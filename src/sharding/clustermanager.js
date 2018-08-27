@@ -57,8 +57,10 @@ class ClusterManager extends EventEmitter {
                 stats: {
                     guilds: 0,
                     users: 0,
+                    channels: 0,
                     totalRam: 0,
                     voice: 0,
+                    playingVoice: 0,
                     exclusiveGuilds: 0,
                     largeGuilds: 0,
                     clusters: []
@@ -90,9 +92,11 @@ class ClusterManager extends EventEmitter {
         setInterval(function () {
             self.stats.stats.guilds = 0;
             self.stats.stats.users = 0;
+            self.stats.stats.channels = 0;
             self.stats.stats.totalRam = 0;
             self.stats.stats.clusters = [];
             self.stats.stats.voice = 0;
+            self.stats.stats.playingVoice = 0;
             self.stats.stats.exclusiveGuilds = 0;
             self.stats.stats.largeGuilds = 0;
             self.stats.clustersCounted = 0;
@@ -226,7 +230,9 @@ class ClusterManager extends EventEmitter {
                     case "stats":
                         this.stats.stats.guilds += message.stats.guilds;
                         this.stats.stats.users += message.stats.users;
+                        this.stats.stats.channels += message.stats.channels;
                         this.stats.stats.voice += message.stats.voice;
+                        this.stats.stats.playingVoice += message.stats.playingVoice;
                         this.stats.stats.totalRam += message.stats.ram;
                         let ram = message.stats.ram / 1000000;
                         this.stats.stats.exclusiveGuilds += message.stats.exclusiveGuilds;
@@ -254,7 +260,9 @@ class ClusterManager extends EventEmitter {
                             this.emit("stats", {
                                 guilds: this.stats.stats.guilds,
                                 users: this.stats.stats.users,
+                                channels: this.stats.stats.channels,
                                 voice: this.stats.stats.voice,
+                                playingVoice: this.stats.stats.playingVoice,
                                 exclusiveGuilds: this.stats.stats.exclusiveGuilds,
                                 largeGuilds: this.stats.stats.largeGuilds,
                                 totalRam: this.stats.stats.totalRam / 1000000,
