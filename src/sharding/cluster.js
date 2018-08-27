@@ -93,7 +93,9 @@ class Cluster {
                                 shards: this.shards,
                                 exclusiveGuilds: this.exclusiveGuilds,
                                 largeGuilds: this.largeGuilds,
-                                voice: this.voiceChannels
+                                voice: this.voiceChannels,
+                                playingVoice: this.playingVoiceChannels,
+                                channels: this.channels
                             }
                         });
                         break;
@@ -245,8 +247,10 @@ class Cluster {
         setInterval(() => {
             this.guilds = bot.guilds.size;
             this.users = bot.users.size;
+            this.channels = Object.keys(client.channelGuildMap).length;
             this.uptime = bot.uptime;
             this.voiceChannels = bot.voiceConnections.size;
+            this.playingVoiceChannels = bot.voiceConnections.filter(v => v.playing).length;
             this.largeGuilds = bot.guilds.filter(g => g.large).length;
             this.exclusiveGuilds = bot.guilds.filter(g => g.members.filter(m => m.bot).length === 1).length;
         }, 1000 * 5);
