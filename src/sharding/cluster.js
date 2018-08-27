@@ -247,7 +247,7 @@ class Cluster {
         setInterval(() => {
             this.guilds = bot.guilds.size;
             this.users = bot.users.size;
-            this.channels = Object.keys(client.channelGuildMap).length;
+            this.channels = Object.keys(bot.channelGuildMap).length;
             this.uptime = bot.uptime;
             this.voiceChannels = bot.voiceConnections.size;
             this.playingVoiceChannels = bot.voiceConnections.filter(v => v.playing).length;
