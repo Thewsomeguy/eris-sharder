@@ -89,7 +89,7 @@ class Cluster {
                                 guilds: this.guilds,
                                 users: this.users,
                                 uptime: this.uptime,
-                                ram: process.memoryUsage().rss,
+                                ram: process.memoryUsage().heapUsed,
                                 shards: this.shards,
                                 exclusiveGuilds: this.exclusiveGuilds,
                                 largeGuilds: this.largeGuilds,
